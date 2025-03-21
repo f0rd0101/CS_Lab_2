@@ -8,20 +8,32 @@ double Z(double x, double a) {
 int main() {
     double x_p, x_k, dx, a;
 
+    
     printf("Введіть коефіцієнт a: ");
     scanf("%lf", &a);
     printf("Введіть стартове значення x_p: ");
     scanf("%lf", &x_p);
-    printf("Введіть кінцеве значення x_k(Обов'язково більше ніж стартове!): ");
+    printf("Введіть кінцеве значення x_k (Обов'язково більше ніж стартове!): ");
     scanf("%lf", &x_k);
     printf("Введіть крок дельта х: ");
     scanf("%lf", &dx);
 
     
+    int n = (int)((x_k - x_p) / dx) + 1;
+
+    
+    double Z_values[n];
+
+    
+    for (int i = 0; i < n; i++) {
+        double x = x_p + i * dx;
+        Z_values[i] = Z(x, a);
+    }
+
+   
     printf("\nРезультат:\n");
-    for (double x = x_p; x <= x_k; x += dx) {
-        if (x > x_k) break;  
-        printf("Z(%.3f) = %.3f\n", x, Z(x, a));
+    for (int i = 0; i < n; i++) {
+        printf("Z(%.3f) = %.3f\n", x_p + i * dx, Z_values[i]);
     }
 
     return 0;
